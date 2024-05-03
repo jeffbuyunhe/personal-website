@@ -1,0 +1,20 @@
+.center-text {
+    @apply text-transparent text-7xl bg-clip-text font-semibold mx-10 my-14 animate-[background-scale_3s_ease_forwards];
+    background-clip: 'text';
+    -webkit-text-fill-color: 'color';
+    -webkit-background-clip: 'background-clip';
+}
+
+.center-text:hover {
+    @apply scale-[1.01]
+}
+
+@keyframes background-scale {
+    from {
+        background-position: center 25%;
+    }
+
+    to {
+        background-position: center 50%;
+    }
+}
