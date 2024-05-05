@@ -1,7 +1,7 @@
 'use client'
 
 import { FaBars } from "react-icons/fa6"
-import { NAVIGATION_DATA } from "../constants"
+import { NAVIGATION_DATA } from "../../constants"
 import { DesktopNavigationItem, MobileNavigationItem } from "./navigation-item"
 import { useState } from "react";
 

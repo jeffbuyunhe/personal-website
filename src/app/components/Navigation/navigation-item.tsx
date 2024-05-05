@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { NavigationItem } from "../types";
+import { Navigation } from "../../types";
 
-export function DesktopNavigationItem({ name, link }: NavigationItem) {
+export function DesktopNavigationItem({ name, link }: Navigation) {
     return <Link href={link} className="text-2xl">
         <span className="hover-underline-animation">
             {name}
@@ -9,7 +9,7 @@ export function DesktopNavigationItem({ name, link }: NavigationItem) {
     </Link>
 }
 
-export function MobileNavigationItem({ name, link }: NavigationItem) {
+export function MobileNavigationItem({ name, link }: Navigation) {
     return <Link href={link} className="text-xl">
         {name}
     </Link>
