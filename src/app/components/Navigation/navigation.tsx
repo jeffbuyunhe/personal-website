@@ -6,7 +6,7 @@ import { DesktopNavigationItem, MobileNavigationItem } from "./navigation-item"
 import { useState } from "react";
 
 export function DesktopNavigation() {
-    return <ul className="hidden md:flex mt-8 mb-4 mx-8">{NAVIGATION_DATA.map((data) =>
+    return <ul className="hidden md:flex mt-8 mb-6 mx-8">{NAVIGATION_DATA.map((data) =>
         <div className="mx-8" key={data.name}>
             <DesktopNavigationItem {...data} />
         </div>

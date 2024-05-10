@@ -1,5 +1,5 @@
 .center-text {
-    @apply text-transparent text-7xl bg-clip-text font-semibold mx-10 my-14 animate-[background-scale_3s_ease_forwards];
+    @apply text-transparent text-7xl bg-clip-text font-semibold animate-[background-scale_3s_ease_forwards] cursor-default text-right ml-12 mr-6 my-8;
     background-clip: 'text';
     -webkit-text-fill-color: 'color';
     -webkit-background-clip: 'background-clip';
