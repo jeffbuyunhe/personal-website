@@ -21,10 +21,12 @@ body {
     box-sizing: border-box;
 }
 
-.row {
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
+@layer utilities {
+    .row {
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+    }
 }
 
 /* 12 grid bootstrap layout */
