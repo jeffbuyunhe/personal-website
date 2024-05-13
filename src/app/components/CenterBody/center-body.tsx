@@ -9,7 +9,10 @@ export default function CenterBody() {
 }
 
 export function DesktopCenterBody() {
-    return <div className="hidden md-lg:row items-center">
+    return <div className="hidden md-lg:row items-center relative h-[100vh]">
+        <video autoPlay muted loop className="-z-10 object-cover absolute min-h-full min-w-full">
+            <source src="center-background.mp4" type="video/mp4" />
+        </video>
         <div className="col-6 m-auto">
             <CenterText />
         </div>
@@ -20,7 +23,10 @@ export function DesktopCenterBody() {
 }
 
 export function MobileCenterBody() {
-    return <div className="row md-lg:hidden items-center">
+    return <div className="row md-lg:hidden items-center relative">
+        <video autoPlay muted loop className="-z-10 object-cover absolute min-h-full min-w-full">
+            <source src="center-background.mp4" type="video/mp4" />
+        </video>
         <div className="m-auto">
             <Portrait />
         </div>

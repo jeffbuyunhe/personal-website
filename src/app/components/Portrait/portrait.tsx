@@ -2,11 +2,12 @@
 
 import Image from "next/image"
 import { Typewriter } from "react-simple-typewriter"
+import "./portrait.css"
 
 export default function Portrait() {
     return <>
         <Image
-            className="rounded-[50%] border-pink-800 border-4 ml-6 my-8"
+            className="rounded-[50%] border-pink-800 border-4 ml-6 my-8 fade-in-animation"
             src="/portrait.png"
             width={450}
             height={450}
