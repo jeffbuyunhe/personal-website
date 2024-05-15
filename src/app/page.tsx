@@ -5,8 +5,10 @@ import About from "./components/About/about";
 export default function Home() {
   return (
     <>
-      <Navigation />
-      <CenterBody />
+      <div className="flex flex-col md-lg:h-[100vh]">
+        <Navigation />
+        <CenterBody />
+      </div>
       <About />
     </>
   );
