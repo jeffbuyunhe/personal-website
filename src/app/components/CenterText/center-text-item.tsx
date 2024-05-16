@@ -3,8 +3,8 @@ import "./center-text.css"
 
 export default function CenterTextItem({ text, img, imgHovered }: CenterText) {
     const backgroundMap = {
-        'fullstack-developer': "bg-[url(https://upload.wikimedia.org/wikipedia/en/3/3f/Bjork_Post.png)]",
-        'ui/ux-hobbyist': "bg-[url(https://upload.wikimedia.org/wikipedia/en/3/3f/Bjork_Post.png)]"
+        'fullstack-developer': "bg-[url('/text-dev.png')]",
+        'ui/ux-hobbyist': "bg-[url('/text-ui.png')]"
     }
 
     const hoverMap = {
