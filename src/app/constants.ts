@@ -9,3 +9,5 @@ export const CENTER_TEXT: CenterText[] = [
 export const GITHUB_LINK: string = "https://github.com/jeffbuyunhe";
 
 export const LINKEDIN_LINK: string = "https://www.linkedin.com/in/jeff-he-722754282/";
+
+export const REPO_LINK: string = "https://github.com/jeffbuyunhe/personal-website";

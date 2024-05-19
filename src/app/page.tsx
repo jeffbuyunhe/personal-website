@@ -1,6 +1,7 @@
 import CenterBody from "./components/CenterBody/center-body";
 import Navigation from "./components/Navigation/navigation";
 import About from "./components/About/about";
+import Footer from "./components/Footer/footer";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
         <CenterBody />
       </div>
       <About />
+      <Footer />
     </>
   );
 }

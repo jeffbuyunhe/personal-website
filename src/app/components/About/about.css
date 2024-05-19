@@ -1,0 +1,11 @@
+.about-button {
+    @apply mx-2 text-gray-600;
+}
+
+.about-button-sm {
+    @apply text-3xl;
+}
+
+.about-button-lg {
+    @apply text-2xl;
+}

@@ -1,5 +1,7 @@
 import { FaGithub, FaLinkedin, FaDownload } from "react-icons/fa6"
 import { GITHUB_LINK, LINKEDIN_LINK } from "@/app/constants"
+import "./about.css"
+import Link from "next/link"
 
 export default function About() {
     return <div className="row-no-margin my-24 items-center">
@@ -9,9 +11,9 @@ export default function About() {
             play records and take hikes.
         </p>
         <div className="flex mx-16 md-lg:mx-40 2xl:mx-64">
-            <a href={GITHUB_LINK} className="text-3xl mx-2"><FaGithub /></a>
-            <a href={LINKEDIN_LINK} className="text-3xl mx-2"><FaLinkedin /></a>
-            <a href="Resume.pdf" className="text-2xl mx-2"><button className="flex">Resume<FaDownload className="mx-2" /></button></a>
+            <a href={GITHUB_LINK} className="about-button about-button-sm hover:text-black"><FaGithub /></a>
+            <a href={LINKEDIN_LINK} className="about-button about-button-sm hover:text-blue-900"><FaLinkedin /></a>
+            <Link href="Resume.pdf" className="about-button about-button-lg hover:text-black"><button className="flex">Resume<FaDownload className="mx-2 m-auto" /></button></Link>
         </div>
     </div >
 }
