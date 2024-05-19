@@ -12,7 +12,7 @@ export default function CenterTextItem({ text, img, imgHovered }: CenterText) {
         'ui/ux-hobbyist': "hover:bg-[url('/text-ui-hover.png')]"
     }
 
-    return <p className={`center-text 
+    return <p className={`center-text text-image-fade-in-animation
     ${backgroundMap[img as keyof typeof backgroundMap]} 
     ${hoverMap[imgHovered as keyof typeof hoverMap]}`}>{text}</p >
 }

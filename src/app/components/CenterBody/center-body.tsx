@@ -1,5 +1,5 @@
-import CenterText from "../CenterText/center-text";
-import Portrait from "../Portrait/portrait";
+import CenterText from "@/app/components/CenterText/center-text";
+import Portrait from "@/app/components/Portrait/portrait";
 
 export default function CenterBody() {
     return <>

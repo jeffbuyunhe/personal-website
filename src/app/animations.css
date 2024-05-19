@@ -1,0 +1,44 @@
+.hover-underline-animation {
+    @apply inline-block relative;
+}
+
+.hover-underline-animation::after {
+    @apply bg-black content-[''] absolute w-full scale-x-0 h-[2.4px] bottom-0 left-0 origin-left transition-all ease-in-out;
+}
+
+.hover-underline-animation:hover::after {
+    @apply scale-x-100;
+}
+
+.fade-in-animation {
+    animation: fadeInAnimation ease 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.text-image-fade-in-animation {
+    @apply text-transparent bg-clip-text font-semibold animate-[background-scale_3s_ease_forwards];
+    background-clip: 'text';
+    -webkit-text-fill-color: 'color';
+    -webkit-background-clip: 'background-clip';
+}
+
+@keyframes background-scale {
+    from {
+        background-position: center 70%;
+    }
+
+    to {
+        background-position: center 50%;
+    }
+}

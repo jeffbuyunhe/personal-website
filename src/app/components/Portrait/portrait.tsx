@@ -2,7 +2,6 @@
 
 import Image from "next/image"
 import { Typewriter } from "react-simple-typewriter"
-import "./portrait.css"
 
 export default function Portrait() {
     return <>

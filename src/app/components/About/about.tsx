@@ -13,7 +13,7 @@ export default function About() {
         <div className="flex mx-16 md-lg:mx-40 2xl:mx-64">
             <a href={GITHUB_LINK} className="about-button about-button-sm hover:text-black"><FaGithub /></a>
             <a href={LINKEDIN_LINK} className="about-button about-button-sm hover:text-blue-900"><FaLinkedin /></a>
-            <Link href="Resume.pdf" className="about-button about-button-lg hover:text-black"><button className="flex">Resume<FaDownload className="mx-2 m-auto" /></button></Link>
+            <Link href="Resume.pdf" className="about-button about-button-lg hover:text-orange-500"><button className="flex">Resume<FaDownload className="mx-2 m-auto" /></button></Link>
         </div>
     </div >
 }
