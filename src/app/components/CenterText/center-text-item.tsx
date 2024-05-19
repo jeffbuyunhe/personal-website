@@ -8,8 +8,8 @@ export default function CenterTextItem({ text, img, imgHovered }: CenterText) {
     }
 
     const hoverMap = {
-        'fullstack-developer': "hover:bg-[url(https://upload.wikimedia.org/wikipedia/en/1/14/Bj%C3%B6rk_-_Vespertine_album_cover.png)]",
-        'ui/ux-hobbyist': "hover:bg-[url(https://upload.wikimedia.org/wikipedia/en/1/14/Bj%C3%B6rk_-_Vespertine_album_cover.png)]"
+        'fullstack-developer': "hover:bg-[url('/text-dev-hover.png')]",
+        'ui/ux-hobbyist': "hover:bg-[url('/text-ui-hover.png')]"
     }
 
     return <p className={`center-text 

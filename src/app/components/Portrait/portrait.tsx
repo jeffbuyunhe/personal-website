@@ -14,7 +14,7 @@ export default function Portrait() {
             alt="Picture of Jeff He"
             priority={true} />
         <div className=" flex w-[450px] m-6 justify-center text-3xl">
-            <p className="text-orange-600">Jeff He</p>
+            <p className="text-orange-500">Jeff He</p>
             <span className="text-gray-300">
                 <Typewriter
                     words={[', Chess Connoisseur', ', Developer Devotee', ', Horology Hobbyist', ', Technology Tinkerer', ', Vinyl Votary']}
