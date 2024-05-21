@@ -2,6 +2,7 @@ import CenterBody from "./components/CenterBody/center-body";
 import Navigation from "./components/Navigation/navigation";
 import About from "./components/About/about";
 import Footer from "./components/Footer/footer";
+import Contact from "./components/Contact/contact";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
         <CenterBody />
       </div>
       <About />
+      <Contact />
       <Footer />
     </>
   );

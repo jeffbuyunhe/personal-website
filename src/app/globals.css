@@ -5,3 +5,11 @@
 body {
     margin: 0;
 }
+
+.content-margin {
+    @apply mx-16 md-lg:mx-40 2xl:mx-64
+}
+
+.content-margin-lg {
+    @apply mx-16 md-lg:mx-40 2xl:mx-72
+}
