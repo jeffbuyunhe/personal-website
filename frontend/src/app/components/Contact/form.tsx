@@ -1,8 +1,9 @@
 'use client'
 
+import emailServices from "@/app/services/email-service";
 import { useForm } from "react-hook-form";
 
-interface FormInput {
+export interface FormInput {
     name: String,
     email: String,
     message: String
@@ -12,7 +13,7 @@ export default function Form() {
     const { register, handleSubmit } = useForm<FormInput>();
 
     function onSubmit(data: FormInput) {
-        console.log(data);
+        emailServices.sendEmail(data);
     }
 
     return <form className="row-no-margin content-margin-lg text-xl" onSubmit={handleSubmit(onSubmit)}>
