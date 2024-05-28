@@ -2,6 +2,7 @@
 
 import emailServices from "@/app/services/email-service";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 
 export interface FormInput {
     name: String,
@@ -10,20 +11,35 @@ export interface FormInput {
 }
 
 export default function Form() {
-    const { register, handleSubmit } = useForm<FormInput>();
+    const { register, handleSubmit, reset } = useForm<FormInput>();
+    const [formSuccess, setFormSuccess] = useState('');
 
     function onSubmit(data: FormInput) {
-        emailServices.sendEmail(data);
+        reset();
+        setFormSuccess('Sending email...');
+        const res = emailServices.sendEmail(data);
+        res.then((res) => {
+            if (res.success) {
+                setFormSuccess(res.success);
+            }
+            else {
+                setFormSuccess(res.error);
+            }
+        })
+        setTimeout
     }
 
-    return <form className="row-no-margin content-margin-lg text-xl" onSubmit={handleSubmit(onSubmit)}>
-        <div className="col-12 md-lg:col-6 mb-4 flex justify-start">
-            <input type="text" placeholder="Name" className="w-[98%] mx-3 p-2 border-gray-200 border-2 rounded-md" {...register("name", { required: true })} />
-        </div>
-        <div className="col-12 md-lg:col-6 mb-4 flex justify-end">
-            <input type="email" placeholder="Email" className="w-[98%] mx-3 p-2 border-gray-200 border-2 rounded-md" {...register("email", { required: true })} />
-        </div>
-        <textarea placeholder="Message" rows={6} className="col-12 mx-3 p-2 border-gray-200 border-2 rounded-md" {...register("message", { required: true })} />
-        <input type="submit" className="mx-3 my-4 px-6 py-2 rounded-md bg-gray-800 text-white hover:bg-black hover:cursor-pointer" />
-    </form>
+    return <>
+        <form className="row-no-margin content-margin-lg text-xl" onSubmit={handleSubmit(onSubmit)}>
+            <div className="col-12 md-lg:col-6 mb-4 flex justify-start">
+                <input type="text" placeholder="Name" className="w-[98%] mx-3 p-2 border-gray-200 border-2 rounded-md" {...register("name", { required: true })} />
+            </div>
+            <div className="col-12 md-lg:col-6 mb-4 flex justify-end">
+                <input type="email" placeholder="Email" className="w-[98%] mx-3 p-2 border-gray-200 border-2 rounded-md" {...register("email", { required: true })} />
+            </div>
+            <textarea placeholder="Message" rows={6} className="col-12 mx-3 p-2 border-gray-200 border-2 rounded-md" {...register("message", { required: true })} />
+            <input type="submit" className="mx-3 my-4 px-6 py-2 rounded-md bg-gray-800 text-white hover:bg-black hover:cursor-pointer" />
+        </form>
+        <p className="content-margin-lg text-xl pl-4">{formSuccess}</p>
+    </>
 }

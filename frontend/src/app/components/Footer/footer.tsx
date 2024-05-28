@@ -1,5 +1,5 @@
 export default function Footer() {
-    return <footer className="flex my-3">
-        <p className="m-auto">Jeff He. Made with Next.js.</p>
+    return <footer className="absolute left-0 right-0 text-center">
+        <p>Jeff He. Made with Next.js.</p>
     </footer>
 }

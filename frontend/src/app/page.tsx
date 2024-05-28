@@ -13,6 +13,7 @@ export default function Home() {
       </div>
       <About />
       <Contact />
+      <div className="h-[10vh]"></div>
       <Footer />
     </>
   );
