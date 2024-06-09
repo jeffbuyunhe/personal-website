@@ -21,12 +21,13 @@ export default function Form() {
         res.then((res) => {
             if (res.success) {
                 setFormSuccess(res.success);
+                setTimeout(() => { setFormSuccess('') }, 5000);
             }
             else {
                 setFormSuccess(res.error);
+                setTimeout(() => { setFormSuccess('') }, 5000);
             }
         })
-        setTimeout
     }
 
     return <>
@@ -40,6 +41,6 @@ export default function Form() {
             <textarea placeholder="Message" rows={6} className="col-12 mx-3 p-2 border-gray-200 border-2 rounded-md" {...register("message", { required: true })} />
             <input type="submit" className="mx-3 my-4 px-6 py-2 rounded-md bg-gray-800 text-white hover:bg-black hover:cursor-pointer" />
         </form>
-        <p className="content-margin-lg text-xl pl-4">{formSuccess}</p>
+        <p className="content-margin-lg text-xl pl-4 h-10">{formSuccess}</p>
     </>
 }

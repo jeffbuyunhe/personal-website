@@ -8,3 +8,8 @@ export interface CenterText {
     img: string;
     imgHovered: string;
 }
+
+export interface CardData {
+    text: string;
+    img: string;
+}
