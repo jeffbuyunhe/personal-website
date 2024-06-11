@@ -7,7 +7,7 @@ export default function Portrait() {
     return <>
         <Image
             className="rounded-[50%] border-gray-300 border-4 ml-6 my-8 fade-in-animation"
-            src="/portrait.png"
+            src="/portrait.jpg"
             width={450}
             height={450}
             alt="Picture of Jeff He"
