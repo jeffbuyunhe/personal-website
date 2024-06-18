@@ -18,7 +18,7 @@ app.use(cors());
 
 app.use("/api/email", emailRouter);
 
-app.get("/", (req, res) => res.send("Express on Vercel"));
+app.get("/", (req, res) => res.send("Express for personal website."));
 
 const PORT = 3001;
 
