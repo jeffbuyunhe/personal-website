@@ -4,9 +4,9 @@ import "./about.css"
 import Link from "next/link"
 
 export default function About() {
-    return <div className="row-no-margin my-24 items-center">
+    return <div className="row-no-margin my-24 items-center h-constraint">
         <h3 className="text-4xl mx-auto mb-6 text-orange-500">About Me</h3>
-        <p className="col-12 content-margin text-xl text-gray-500 leading-8 mb-8">I'm a developer with a focus on web technologies, with a speciality in frontend development. For me, theres
+        <p className="col-12 content-margin text-xl text-gray-500 leading-8 mb-8">I'm a fullstack and automation developer with a focus on web technologies, and software quality. For me, theres
             something so enjoyable about creating my own designs, and then bringing those designs to life with code. In my spare time, I like to play and study Chess,
             play records and take hikes.
         </p>

@@ -4,6 +4,7 @@ import "./center-text.css"
 export default function CenterTextItem({ text, img, imgHovered }: CenterText) {
     const backgroundMap = {
         'fullstack-developer': "bg-[url('/text-dev.png')]",
+        'qa-engineer': "bg-[url('/text-qa.png')]",
         'ui/ux-hobbyist': "bg-[url('/text-ui.png')]"
     }
 

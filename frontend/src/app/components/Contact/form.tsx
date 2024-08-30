@@ -31,7 +31,7 @@ export default function Form() {
     }
 
     return <>
-        <form className="row-no-margin content-margin-lg text-xl" onSubmit={handleSubmit(onSubmit)}>
+        <form className="row-no-margin text-xl h-constraint mx-24 2xl:mx-auto" onSubmit={handleSubmit(onSubmit)}>
             <div className="col-12 md-lg:col-6 mb-4 flex justify-start">
                 <input type="text" placeholder="Name" className="w-[98%] mx-3 p-2 border-gray-200 border-2 rounded-md" {...register("name", { required: true })} />
             </div>

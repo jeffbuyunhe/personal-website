@@ -4,6 +4,7 @@ export const NAVIGATION_DATA: Navigation[] = [{ name: 'Home', link: '/' }];
 
 export const CENTER_TEXT: CenterText[] = [
     { text: 'FULLSTACK DEVELOPER', img: 'fullstack-developer', imgHovered: 'fullstack-developer' },
+    { text: 'QA ENGINEER', img: 'qa-engineer', imgHovered: 'qa-engineer' },
     { text: 'UI/UX HOBBYIST', img: 'ui/ux-hobbyist', imgHovered: 'ui/ux-hobbyist' }];
 
 export const GITHUB_LINK: string = "https://github.com/jeffbuyunhe";
@@ -27,5 +28,6 @@ export const SKILL_DATA: CardData[] = [
     { text: 'OpenAI', img: '/skills/openai-icon.svg' },
     { text: 'Photoshop', img: '/skills/photoshop-icon.svg' },
     { text: 'Figma', img: 'skills/figma-icon.svg' },
+    { text: 'TestRail', img: '/skills/testrail-icon.svg' },
     { text: 'Puppeteer', img: '/skills/puppeteer-icon.svg' },
 ];

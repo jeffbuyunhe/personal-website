@@ -6,6 +6,10 @@ body {
     margin: 0;
 }
 
+.h-constraint {
+    @apply mx-auto max-w-[1440px]
+}
+
 .content-margin {
     @apply mx-16 md-lg:mx-40 2xl:mx-64
 }
