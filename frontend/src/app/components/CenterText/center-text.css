@@ -1,5 +1,5 @@
 .center-text {
-    @apply cursor-default text-center text-7xl mx-12 my-8 md-lg:text-right md-lg:ml-12 md-lg:mr-6;
+    @apply cursor-default text-center text-[2.4rem] leading-10 tiny:text-5xl sm:text-7xl mx-12 my-8 md-lg:text-right md-lg:ml-12 md-lg:mr-6;
 }
 
 .center-text:hover {

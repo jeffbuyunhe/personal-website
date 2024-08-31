@@ -4,6 +4,7 @@
 
 body {
     margin: 0;
+    min-width: 320px;
 }
 
 .h-constraint {
@@ -11,9 +12,9 @@ body {
 }
 
 .content-margin {
-    @apply mx-16 md-lg:mx-40 2xl:mx-64
+    @apply mx-8 tiny:mx-10 sm:mx-16 md-lg:mx-40 2xl:mx-64
 }
 
 .content-margin-lg {
-    @apply mx-16 md-lg:mx-40 2xl:mx-72
+    @apply mx-8 tiny:mx-10 sm:mx-16 md-lg:mx-40 2xl:mx-72
 }

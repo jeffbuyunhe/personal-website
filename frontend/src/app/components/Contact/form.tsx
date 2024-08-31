@@ -21,17 +21,16 @@ export default function Form() {
         res.then((res) => {
             if (res.success) {
                 setFormSuccess(res.success);
-                setTimeout(() => { setFormSuccess('') }, 5000);
             }
             else {
                 setFormSuccess(res.error);
-                setTimeout(() => { setFormSuccess('') }, 5000);
             }
+            setTimeout(() => { setFormSuccess('') }, 5000);
         })
     }
 
     return <>
-        <form className="row-no-margin text-xl h-constraint mx-24 2xl:mx-auto" onSubmit={handleSubmit(onSubmit)}>
+        <form className="row-no-margin text-xl h-constraint content-margin 2xl:mx-auto max-w-[984px]" onSubmit={handleSubmit(onSubmit)}>
             <div className="col-12 md-lg:col-6 mb-4 flex justify-start">
                 <input type="text" placeholder="Name" className="w-[98%] mx-3 p-2 border-gray-200 border-2 rounded-md" {...register("name", { required: true })} />
             </div>
