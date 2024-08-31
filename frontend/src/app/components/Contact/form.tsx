@@ -40,6 +40,6 @@ export default function Form() {
             <textarea placeholder="Message" rows={6} className="col-12 mx-3 p-2 border-gray-200 border-2 rounded-md" {...register("message", { required: true })} />
             <input type="submit" className="mx-3 my-4 px-6 py-2 rounded-md bg-gray-800 text-white hover:bg-black hover:cursor-pointer" />
         </form>
-        <p className="content-margin-lg text-xl pl-4 h-10">{formSuccess}</p>
+        <p className="max-w-[984px] content-margin 2xl:mx-auto text-xl pl-4 h-10">{formSuccess}</p>
     </>
 }
