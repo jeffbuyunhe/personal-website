@@ -22,9 +22,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: "Create env files"
-        run: echo "${{ secrets.ENV_FRONTEND }}" > ./frontend/.env
-        run: echo "${{ secrets.ENV_BACKEND }}" > ./backend/.env
+      - run: echo "${{ secrets.ENV_FRONTEND }}" > ./frontend/.env
+      - run: echo "${{ secrets.ENV_BACKEND }}" > ./backend/.env
 
       - run: npm ci
       - run: npm run install-all
