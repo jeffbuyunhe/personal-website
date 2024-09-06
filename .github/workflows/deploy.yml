@@ -34,7 +34,7 @@ jobs:
         with:
           switches: -avzr --delete
           path: ./*
-          remote_path: /var/www/app/
+          remote_path: /app/
           remote_host: "${{ secrets.SSH_HOST }}"
           remote_user: ubuntu
           remote_key: "${{ secrets.SSH_PRIVATE_KEY }}"
