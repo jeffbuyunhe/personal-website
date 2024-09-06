@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "install-all": "concurrently \"cd frontend && npm ci\" \"cd backend && npm ci\"",
-    "start": "cd frontend && npm run build"
+    "build": "cd frontend && npm run build",
+    "start": "concurrently \"cd frontend && npm run start\" \"cd backend && npm run start\""
   },
   "author": "",
   "license": "ISC",
