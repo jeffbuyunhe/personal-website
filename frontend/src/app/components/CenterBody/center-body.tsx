@@ -9,7 +9,7 @@ export default function CenterBody() {
 }
 
 export function DesktopCenterBody() {
-    return <div className="hidden md-lg:flex items-center relative flex-grow">
+    return <div className="hidden md-lg:flex items-center relative h-[calc(100vh-68px)]">
         <video autoPlay muted loop className="-z-10 object-cover absolute h-full w-full">
             <source src="center-background.mp4" type="video/mp4" />
         </video>

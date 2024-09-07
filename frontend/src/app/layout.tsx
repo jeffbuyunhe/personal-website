@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
+import { NextUIProvider } from "@nextui-org/system";
 import { Outfit } from "next/font/google";
+import Navigation from "@/app/components/Navigation/navigation"
+import Footer from "@/app/components/Footer/footer"
 import "./globals.css";
 import "./cols.css";
 import "./animations.css";
@@ -18,7 +21,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={outfit.className}>{children}</body>
-    </html >
+      <body className={outfit.className}>
+        <NextUIProvider>
+          <Navigation />
+          <>{children}</>
+          <Footer />
+        </NextUIProvider>
+      </body>
+    </html>
   );
 }

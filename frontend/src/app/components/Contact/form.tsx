@@ -29,8 +29,8 @@ export default function Form() {
         })
     }
 
-    return <>
-        <form className="row-no-margin text-xl h-constraint content-margin xl:mx-auto max-w-[984px]" onSubmit={handleSubmit(onSubmit)}>
+    return <div className="mx-auto w-[80%]">
+        <form className="row-no-margin text-xl" onSubmit={handleSubmit(onSubmit)}>
             <div className="col-12 md-lg:col-6 mb-4 flex justify-start">
                 <input type="text" placeholder="Name" className="w-[98%] mx-3 p-2 border-gray-200 border-2 rounded-md" {...register("name", { required: true })} />
             </div>
@@ -40,6 +40,6 @@ export default function Form() {
             <textarea placeholder="Message" rows={6} className="col-12 mx-3 p-2 border-gray-200 border-2 rounded-md" {...register("message", { required: true })} />
             <input type="submit" className="mx-3 my-4 px-6 py-2 rounded-md bg-gray-800 text-white hover:bg-black hover:cursor-pointer" />
         </form>
-        <p className="max-w-[984px] content-margin xl:mx-auto text-xl pl-4 h-10">{formSuccess}</p>
-    </>
+        <p className="xl:mx-auto text-xl pl-4 h-10">{formSuccess}</p>
+    </div>
 }

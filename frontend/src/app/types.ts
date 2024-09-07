@@ -1,6 +1,7 @@
 export interface Navigation {
     name: string;
     link: string;
+    active: boolean;
 }
 
 export interface CenterText {
