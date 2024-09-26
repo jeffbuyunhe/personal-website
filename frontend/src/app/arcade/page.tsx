@@ -1,6 +1,7 @@
+import Games from "./components/Cards/Games";
 
-export default function Home() {
+export default function Arcade() {
   return (
-    <center className="text-7xl">COMING SOON</center>
+    <Games />
   );
 }
