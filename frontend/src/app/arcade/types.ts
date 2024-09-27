@@ -1,5 +1,7 @@
 export interface GameCardData {
     text: string;
+    link: string;
+    gitLink: string;
     img: string;
-    available: boolean;
+    comingSoon: boolean;
 }

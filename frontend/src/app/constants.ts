@@ -1,6 +1,6 @@
 import { CardData, CenterText, Navigation } from "./types";
 
-export const NAVIGATION_DATA: Navigation[] = [{ name: 'Home', link: '/', active: true }, { name: 'Arcade', link: '/arcade', active: false }];
+export const NAVIGATION_DATA: Navigation[] = [{ name: 'Home', link: '/', active: true }, { name: 'Arcade', link: '/arcade', active: true }];
 
 export const CENTER_TEXT: CenterText[] = [
     { text: 'FULLSTACK DEVELOPER', img: 'fullstack-developer', imgHovered: 'fullstack-developer' },

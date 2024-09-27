@@ -1,6 +1,12 @@
 import { GameCardData } from "./types";
 
 export const CARD_DATA: GameCardData[] = [
-    { text: 'Toronto Record Store Scraper', img: '/arcade/trss.png', available: false },
-    { text: 'Toronto Record Store Scraper', img: '/arcade/trss.png', available: true },
+    {
+        text: 'Toronto Record Store Scraper', link: '/arcade/trss', img: '/arcade/trss.png',
+        gitLink: 'https://github.com/jeffbuyunhe/toronto-record-store-scraper', comingSoon: false
+    },
+    {
+        text: 'Toronto Record Store Scraper', link: '/arcade/trss', img: '/arcade/trss.png',
+        gitLink: 'https://github.com/jeffbuyunhe/toronto-record-store-scraper', comingSoon: true
+    },
 ];
