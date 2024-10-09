@@ -28,9 +28,9 @@ jobs:
       - run: npm ci
       - run: npm run install-all
       - run: npm run build
-
-      - name: rsync deployments
-        uses: burnett01/rsync-deployments@5.1
+      
+      - name: rsync update
+        uses: burnett01/rsync-deployments@7.0.1
         with:
           switches: -avzr --delete
           path: ./*
@@ -38,3 +38,11 @@ jobs:
           remote_host: "${{ secrets.SSH_HOST }}"
           remote_user: ubuntu
           remote_key: "${{ secrets.SSH_PRIVATE_KEY }}"
+
+      - name: restart server
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: "${{ secrets.SSH_HOST }}"
+          username: ubuntu
+          key: "${{ secrets.SSH_PRIVATE_KEY }}"
+          script: cd ~/scripts/ && ./restart-frontend.sh && ./restart-backend.sh
