@@ -7,18 +7,18 @@ export const emailRouter = Router();
 emailRouter.post("/", async (req, res) => {
     try {
         const transport = NodeMailer.createTransport({
-            host: "smtp-mail.outlook.com",
+            host: "smtp.gmail.com",
             port: 587,
             secure: false,
             auth: {
-                user: process.env.EMAIL_ADDRESS,
+                user: process.env.EMAIL_ADDRESS_FROM,
                 pass: process.env.EMAIL_KEY,
             },
         });
 
         const mailOptions = {
-            from: process.env.EMAIL_ADDRESS,
-            to: process.env.EMAIL_ADDRESS,
+            from: process.env.EMAIL_ADDRESS_FROM,
+            to: process.env.EMAIL_ADDRESS_TO,
             subject: `${req.body.name} - from personal website`,
             text: `From: ${req.body.email}\n\n${req.body.message}`,
         };
