@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from "body-parser";
 import cors from "cors";
 import { emailRouter } from './routers/email_router.js';
+import { trssRouter } from './routers/games/trss/trss_router.js';
 import "dotenv/config";
 
 export const app = express();
@@ -17,6 +18,7 @@ const corsOptions = {
 app.use(cors());
 
 app.use("/api/email", emailRouter);
+app.use("/api/games/trss", trssRouter);
 
 app.get(["/", "/api"], (req, res) => res.status(200).send("Express for personal website."));
 
