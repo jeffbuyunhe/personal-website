@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Navigation } from "../../types";
+import { Navigation } from "@/app/types";
 
 export function DesktopNavigationItem({ name, link, active }: Navigation) {
 

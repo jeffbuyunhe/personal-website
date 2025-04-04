@@ -1,4 +1,4 @@
-import { CenterText } from "../../types"
+import { CenterText } from "@/app/types"
 import "./center-text.css"
 
 export default function CenterTextItem({ text, img, imgHovered }: CenterText) {

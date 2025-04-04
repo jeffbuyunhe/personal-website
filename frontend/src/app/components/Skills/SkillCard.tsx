@@ -1,6 +1,6 @@
 import { CardData } from "@/app/types";
-import { Card, CardFooter, CardBody } from "@nextui-org/card";
-import { Image } from "@nextui-org/image";
+import { Card, CardFooter, CardBody } from "@heroui/card";
+import { Image } from "@heroui/image";
 
 export default function SkillCard({ text, img }: CardData) {
     return <Card shadow="sm" className="m-1">

@@ -1,4 +1,4 @@
-import { ENDPOINTS } from "../endpoints";
+import { ENDPOINTS } from "@/app/services/endpoints";
 
 const searchRecord = (query: string) => {
     return fetch(`${ENDPOINTS.TRSS_URL}/search?q=${encodeURIComponent(query)}`, {

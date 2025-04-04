@@ -7,8 +7,8 @@ import "@/app/animations.css";
 const outfit = Outfit({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Arcade",
-  description: "Various webapps that do fun things.",
+  title: "Toronto Record Store Scraper",
+  description: "Scrapes information about records from popular Toronto record stores for easy comparison.",
 };
 
 export default function RootLayout({

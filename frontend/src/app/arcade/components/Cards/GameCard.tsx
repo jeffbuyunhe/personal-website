@@ -1,11 +1,11 @@
 'use client';
 
 import { GameCardData } from "@/app/arcade/types";
-import { Card, CardHeader, CardFooter, CardBody } from "@nextui-org/card";
-import { Image } from "@nextui-org/image";
+import { Card, CardHeader, CardFooter, CardBody } from "@heroui/card";
+import { Image } from "@heroui/image";
 import Link from "next/link";
 import { FaGithub } from "react-icons/fa6";
-import { navigateArcade } from "../../utils";
+import { navigateArcade } from "@/app/arcade/utils";
 
 export function GameCard({ text, img, link, gitLink }: GameCardData) {
     return <Card shadow="md" className="m-1 grayscale-[0.3] hover:grayscale-0 hover:scale-[0.99] min-w-[248px] sm:min-w-[320px] h-[240px]" isPressable
