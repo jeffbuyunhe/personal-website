@@ -18,11 +18,11 @@ trssRouter.get("/search", async (req, res) => {
             sonicBoomScrape(browser, query),
             deadDogScrape(browser, query),
             kopsScrape(browser, query)]).then(res => {
-                const result = {};
-                result.popMusic = res[0];
-                result.sonicBoom = res[1];
-                result.deadDog = res[2];
-                result.kops = res[3];
+                const result = [];
+                result.push(res[0]);
+                result.push(res[1]);
+                result.push(res[2]);
+                result.push(res[3]);
                 return result;
             });
 

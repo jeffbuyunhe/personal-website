@@ -9,5 +9,5 @@ export default function CenterTextItem({ text, img, imgHovered }: CenterText) {
     }
 
     return <p className={`center-text text-image-fade-in-animation
-    ${backgroundMap[img as keyof typeof backgroundMap]}`}>{text}</p >
+    ${backgroundMap[img as keyof typeof backgroundMap]}`}>{text}</p>
 }
