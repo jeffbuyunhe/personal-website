@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { HeroUIProvider } from "@heroui/system";
 import { Outfit } from "next/font/google";
 import Navigation from "@/app/components/Navigation/navigation"
-import Footer from "@/app/components/Footer/footer"
 import "@/app/globals.css";
 import "@/app/cols.css";
 import "@/app/animations.css";
@@ -25,7 +24,6 @@ export default function RootLayout({
         <HeroUIProvider>
           <Navigation />
           <>{children}</>
-          <Footer />
         </HeroUIProvider>
       </body>
     </html>

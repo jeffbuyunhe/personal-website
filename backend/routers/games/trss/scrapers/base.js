@@ -1,6 +1,7 @@
 export async function scrape(browser, query, baseUrl, productLink, htmlTitle, htmlImg, htmlPrice, htmlAvail) {
     const page = await browser.newPage();
-    await page.goto(`${baseUrl}${encodeURIComponent(query)}`);
+    const url = `${baseUrl}${encodeURIComponent(query)}`;
+    await page.goto(url);
 
     try {
         const first_record = await page.$eval(productLink, e => e.href);
@@ -18,6 +19,7 @@ export async function scrape(browser, query, baseUrl, productLink, htmlTitle, ht
                 img: img.trim(),
                 price: price.trim(),
                 availability: availability.trim(),
+                url: url
             }
         }
         catch (e) {
@@ -27,6 +29,9 @@ export async function scrape(browser, query, baseUrl, productLink, htmlTitle, ht
     }
     catch (e) {
         await page.close();
-        return { error: "No products found" };
+        return {
+            url: url,
+            error: "No products found"
+        };
     }
 };

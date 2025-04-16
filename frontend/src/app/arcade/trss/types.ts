@@ -5,4 +5,5 @@ export interface Result {
     price: number;
     title: string;
     error: string;
+    url: string;
 };
