@@ -6,4 +6,5 @@ export interface Result {
     title: string;
     error: string;
     url: string;
+    recordUrl: string;
 };

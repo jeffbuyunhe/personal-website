@@ -19,12 +19,16 @@ export async function scrape(browser, query, baseUrl, productLink, htmlTitle, ht
                 img: img.trim(),
                 price: price.trim(),
                 availability: availability.trim(),
-                url: url
+                url: url,
+                recordUrl: first_record
             }
         }
         catch (e) {
             await page.close();
-            return { error: "Could not get product details" };
+            return {
+                url: url,
+                error: "Could not get product details"
+            };
         }
     }
     catch (e) {

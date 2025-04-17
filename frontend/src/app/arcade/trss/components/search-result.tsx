@@ -1,10 +1,11 @@
 import { Result } from "@/app/arcade/trss/types";
 import { Button } from "@heroui/button";
-import { Card, CardBody, CardFooter } from "@heroui/card";
+import { Card, CardBody } from "@heroui/card";
 import { Image } from "@heroui/image";
 import { useRouter } from "next/navigation";
+import { FiExternalLink } from "react-icons/fi";
 
-export default function SearchResult({ availability, img, name, price, title, error, url }: Result) {
+export default function SearchResult({ availability, img, name, price, title, error, url, recordUrl }: Result) {
     const router = useRouter();
 
     return (
@@ -26,19 +27,17 @@ export default function SearchResult({ availability, img, name, price, title, er
                             </div>
                             <div className="flex flex-col col-span-6 md:col-span-8">
                                 <div className="flex justify-between items-start">
-                                    <div className="flex flex-col gap-0">
+                                    <div className="flex flex-col gap-0 w-full">
                                         <h3 className="text-md md:text-lg mb-2 mx-2">{name}</h3>
                                         <p className="text-lg md:text-xl mb-2 mx-2">{error}</p>
-                                        <div className="flex items-center mx-2">
-                                            <Button size="md" variant="bordered"
-                                                className="bg-gradient-to-tr from-purple-500 to-orange-500 text-white shadow-lg border-white"
+                                        <div className="flex items-center mx-2"></div>
+                                        <div className="flex ml-auto">
+                                            <Button size="md" variant="flat"
+                                                className="ml-auto text-lg md:text-xl text-blue-950 bg-white/30"
                                                 onPress={() => { router.push(url) }}>View All</Button>
                                         </div>
                                     </div>
                                 </div>
-                                <Button size="md" variant="bordered"
-                                    className="bg-gradient-to-tr from-purple-500 to-orange-500 text-white shadow-lg border-white"
-                                    onPress={() => { router.push(url) }}>View All</Button>
                             </div>
                         </div>
                     </CardBody>
@@ -67,15 +66,20 @@ export default function SearchResult({ availability, img, name, price, title, er
                             </div>
                             <div className="flex flex-col col-span-6 md:col-span-8">
                                 <div className="flex justify-between items-start">
-                                    <div className="flex flex-col gap-0">
-                                        <h1 className="text-xl md:text-2xl my-2 mx-2">{title}</h1>
+                                    <div className="flex flex-col gap-0 w-full">
+                                        <h1 className="text-xl md:text-2xl my-2 mx-2 flex hover:underline hover:cursor-pointer"
+                                            onClick={() => router.push(recordUrl)}>
+                                            {title} &#10548;
+                                        </h1>
                                         <h3 className="text-md md:text-lg mb-2 mx-2">{name}</h3>
                                         <p className="text-lg md:text-xl mb-2 mx-2">{availability}</p>
                                         <div className="flex items-center mx-2">
                                             <h1 className="text-lg md:text-xl font-semibold mr-5">{price}</h1>
-                                            <Button size="md" variant="bordered"
-                                                className="bg-gradient-to-tr from-purple-500 to-orange-500 text-white shadow-lg border-white"
-                                                onPress={() => { router.push(url) }}>View All</Button>
+                                            <div className="flex ml-auto">
+                                                <Button size="md" variant="flat"
+                                                    className="ml-auto text-lg md:text-xl text-blue-950 bg-white/30"
+                                                    onPress={() => { router.push(url) }}>View All</Button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -83,8 +87,7 @@ export default function SearchResult({ availability, img, name, price, title, er
                         </div>
                     </CardBody>
                 </Card>
-            )
-            }
+            )}
         </div >
     );
 }
