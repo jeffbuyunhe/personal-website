@@ -3,7 +3,6 @@ import { Button } from "@heroui/button";
 import { Card, CardBody } from "@heroui/card";
 import { Image } from "@heroui/image";
 import { useRouter } from "next/navigation";
-import { FiExternalLink } from "react-icons/fi";
 
 export default function SearchResult({ availability, img, name, price, title, error, url, recordUrl }: Result) {
     const router = useRouter();

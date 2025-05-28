@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Input } from "@heroui/input";
 import { Button } from "@heroui/button";
+import { RadioGroup, Radio } from "@heroui/radio";
 import { useForm } from "react-hook-form";
 import { BiSearch } from "react-icons/bi";
 import { Result } from "@/app/arcade/trss/types";
@@ -65,26 +66,34 @@ export default function Search() {
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <div className="flex items-center h-constraint my-3">
-                    <Input
-                        className="ml-4 mr-2"
-                        placeholder="Search for a Record"
-                        startContent={<BiSearch />}
-                        size="lg"
-                        isClearable
-                        {...register("query", { required: true })}
-                    />
-                    <Button
-                        className="ml-2 mr-4 bg-gradient-to-tr from-yellow-500 to-orange-500 text-white shadow-lg"
-                        isLoading={loading}
-                        radius="md"
-                        type="submit"
-                        size="md"
-                    >
-                        Search
-                    </Button>
+                <div className="flex flex-col h-constraint my-3">
+                    <div className="flex items-center">
+                        <Input
+                            className="ml-4 mr-2"
+                            placeholder="Search for a Record"
+                            startContent={<BiSearch />}
+                            size="lg"
+                            isClearable
+                            {...register("query", { required: true })}
+                        />
+                        <Button
+                            className="ml-2 mr-4 bg-gradient-to-tr from-yellow-500 to-orange-500 text-white shadow-lg"
+                            isLoading={loading}
+                            radius="md"
+                            type="submit"
+                            size="md"
+                        >
+                            Search
+                        </Button>
+                    </div>
+                    <div>
+                        <RadioGroup orientation="horizontal">
+                            <Radio value="vinyl-only">Only Vinyl</Radio>
+                            <Radio value="cd-only">Only CDs</Radio>
+                        </RadioGroup>
+                    </div>
                 </div>
-            </form>
+            </form >
             <div className="h-[calc(100vh-80px)] overflow-y-auto px-4 flex flex-col items-center">
                 {results.map((result) => (
                     <SearchResult key={result.name} {...result} />

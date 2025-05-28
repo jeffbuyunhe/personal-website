@@ -16,6 +16,7 @@
     "@heroui/form": "^2.1.15",
     "@heroui/image": "2.2.10",
     "@heroui/input": "^2.4.16",
+    "@heroui/radio": "^2.3.16",
     "@heroui/system": "2.4.12",
     "@heroui/theme": "2.4.12",
     "colorthief": "^2.6.0",
