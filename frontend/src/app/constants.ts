@@ -16,6 +16,11 @@ export const LINKEDIN_LINK: string = "https://www.linkedin.com/in/jeff-he-722754
 
 export const REPO_LINK: string = "https://github.com/jeffbuyunhe/personal-website";
 
+export const ABOUT_TEXT: string =
+    "I'm a fullstack and automation developer with on software quality. " +
+    "For me, theres something so enjoyable about bringing a robust test base to life with an automation framework. " +
+    "In my spare time, I like to practice the Olympic lifts, play Chess, and listen to records. ";
+
 export const SKILL_DATA: CardData[] = [
     { text: 'Node.js', img: '/skills/nodejs-icon.svg' },
     { text: 'React', img: '/skills/react-icon.svg' },

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { NextUIProvider } from "@nextui-org/system";
 import { Outfit } from "next/font/google";
 import Navigation from "@/app/components/Navigation/navigation"
-import Footer from "@/app/components/Footer/footer"
 import "./globals.css";
 import "./cols.css";
 import "./animations.css";
@@ -25,7 +24,6 @@ export default function RootLayout({
         <NextUIProvider>
           <Navigation />
           <>{children}</>
-          <Footer />
         </NextUIProvider>
       </body>
     </html>
