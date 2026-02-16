@@ -10,10 +10,11 @@ export default function Portrait() {
                 className="rounded-full border-gray-300 border-4 object-cover"
                 src="/portrait.jpg"
                 fill
+                sizes="(max-width: 640px) 70vw, 450px"
                 alt="Picture of Jeff He"
                 priority />
         </div>
-        <div className=" flex w-[70%px] sm:w-[450px] m-6 justify-center text-[1.35rem] tiny:text-[1.75rem]">
+        <div className="flex w-[70%] sm:w-[450px] m-6 justify-center text-[1.35rem] tiny:text-[1.75rem]">
             <p className="text-orange-500">Jeff He</p>
             <span className="text-gray-300">
                 <Typewriter
