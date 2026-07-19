@@ -38,7 +38,7 @@ export default function Form() {
                     className="w-[98%] mx-3 p-2 border-gray-200 border-2 rounded-md"
                     {...register("name", { required: true, maxLength: 200 })} />
             </div>
-            <div className="col-12 md-lg:col-6 mb-4 flex justify-end">
+            <div className="col-12 md-lg:col-6 mb-4 flex justify-start md-lg:justify-end">
                 <input
                     type="email"
                     placeholder="Email"
