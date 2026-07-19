@@ -1,13 +1,13 @@
 import { ENDPOINTS } from "./endpoints";
-import { FormInput } from "@/app/components/Contact/form";
+import { EmailFormInput, EmailResponse } from "./types";
 
-const sendEmail = (data: FormInput) => {
+const sendEmail = (data: EmailFormInput): Promise<EmailResponse> => {
     return fetch(ENDPOINTS.EMAIL_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: data.name, email: data.email, message: data.message }),
     }).then((res) => res.json())
-        .catch(() => { return { error: "Could not reach server, message could not be sent." } });
+        .catch(() => ({ error: "Could not reach server, message could not be sent." }));
 };
 
 const emailServices = { sendEmail };

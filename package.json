@@ -4,14 +4,20 @@
   "description": "",
   "main": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npm --prefix frontend test && npm --prefix backend test",
     "install-all": "concurrently \"cd frontend && npm ci\" \"cd backend && npm ci\"",
     "build": "cd frontend && npm run build",
-    "start": "concurrently \"cd frontend && npm run start\" \"cd backend && npm run start\""
+    "dev": "concurrently \"cd frontend && npm run dev\" \"cd backend && npm start\"",
+    "start": "concurrently \"cd frontend && npm run start\" \"cd backend && npm run start\"",
+    "lint": "npm --prefix frontend run lint && npm --prefix backend run lint",
+    "format": "prettier --write ."
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "concurrently": "^8.2.2"
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3"
   }
 }

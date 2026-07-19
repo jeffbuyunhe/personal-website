@@ -1,0 +1,11 @@
+node_modules
+.next
+.env
+src/**/*.test.*
+src/**/*.spec.*
+*.config.mjs
+*.config.ts
+postcss.config.*
+tailwind.config.*
+tsconfig.json
+next-env.d.ts

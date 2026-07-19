@@ -1,34 +1,21 @@
 import { Router } from "express";
-import puppeteer from "puppeteer";
-import { scrape as popMusicScrape } from "./scrapers/pop-music.js";
-import { scrape as sonicBoomScrape } from "./scrapers/sonic-boom.js";
-import { scrape as deadDogScrape } from "./scrapers/dead-dog.js";
-import { scrape as kopsScrape } from "./scrapers/kops.js";
-
+import { z } from "zod";
+import { asyncHandler, HttpError } from "../../../middleware/error-handler.js";
+import { searchRecords } from "./service.js";
 
 export const trssRouter = Router();
 
-trssRouter.get("/search", async (req, res) => {
-    try {
-        const query = req.query.q;
-        const browser = await puppeteer.launch();
-
-        const result = await Promise.all(
-            [popMusicScrape(browser, query),
-            sonicBoomScrape(browser, query),
-            deadDogScrape(browser, query),
-            kopsScrape(browser, query)]).then(res => {
-                const result = {};
-                result.popMusic = res[0];
-                result.sonicBoom = res[1];
-                result.deadDog = res[2];
-                result.kops = res[3];
-                return result;
-            });
-
-        return res.status(200).send(result);
-    }
-    catch (err) {
-        return res.status(500).json({ error: "Could not retrieve record data." });
-    }
+const searchQuerySchema = z.object({
+    q: z.string().trim().min(1).max(200),
 });
+
+trssRouter.get("/search", asyncHandler(async (req, res) => {
+    const parsed = searchQuerySchema.safeParse(req.query);
+    if (!parsed.success) {
+        throw new HttpError(400, "Invalid search parameters.");
+    }
+
+    const results = await searchRecords(parsed.data.q);
+
+    res.status(200).json(results);
+}));

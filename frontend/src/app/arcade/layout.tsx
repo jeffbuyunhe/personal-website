@@ -1,10 +1,4 @@
 import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
-import "../globals.css";
-import "../cols.css";
-import "../animations.css";
-
-const outfit = Outfit({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Arcade",

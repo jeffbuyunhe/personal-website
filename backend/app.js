@@ -1,29 +1,38 @@
-import express from 'express';
-import bodyParser from "body-parser";
+import express from "express";
 import cors from "cors";
-import { emailRouter } from './routers/email_router.js';
-import { trssRouter } from './routers/games/trss/trss_router.js';
-import "dotenv/config";
+import helmet from "helmet";
+import pinoHttp from "pino-http";
+import { env } from "./lib/env.js";
+import { logger } from "./lib/logger.js";
+import { errorHandler } from "./middleware/error-handler.js";
+import { emailRouter } from "./routers/email_router.js";
+import { trssRouter } from "./routers/games/trss/trss_router.js";
 
-export const app = express();
+export function createApp() {
+    const app = express();
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json({ limit: "50mb" }));
+    app.use(pinoHttp({ logger }));
+    app.use(helmet());
+    app.use(express.urlencoded({ extended: false }));
+    app.use(express.json({ limit: "1mb" }));
 
-const corsOptions = {
-    origin: process.env.FRONTEND_URL,
-    optionsSuccessStatus: 200,
-};
+    const corsOptions = env.FRONTEND_URL
+        ? { origin: env.FRONTEND_URL.replace(/\/$/, ""), optionsSuccessStatus: 200 }
+        : undefined;
+    app.use(cors(corsOptions));
 
-app.use(cors());
+    app.get("/api/health", (req, res) => {
+        res.status(200).json({ status: "ok", uptime: process.uptime() });
+    });
 
-app.use("/api/email", emailRouter);
-app.use("/api/games/trss", trssRouter);
+    app.use("/api/email", emailRouter);
+    app.use("/api/games/trss", trssRouter);
 
-app.get(["/", "/api"], (req, res) => res.status(200).send("Express for personal website."));
+    app.get(["/", "/api"], (req, res) => res.status(200).send("Express for personal website."));
 
-const PORT = 3001;
+    app.use(errorHandler);
 
-app.listen(PORT, () => {
-    console.log(`Listening on port ${PORT}`)
-})
+    return app;
+}
+
+export const app = createApp();

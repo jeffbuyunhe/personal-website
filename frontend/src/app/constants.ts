@@ -5,9 +5,9 @@ export const NAVIGATION_DATA: Navigation[] = [
     { name: 'Arcade', link: '/arcade', active: true }];
 
 export const CENTER_TEXT: CenterText[] = [
-    { text: 'FULLSTACK DEVELOPER', img: 'fullstack-developer', imgHovered: 'fullstack-developer' },
-    { text: 'QA ENGINEER', img: 'qa-engineer', imgHovered: 'qa-engineer' },
-    { text: 'UI/UX HOBBYIST', img: 'ui/ux-hobbyist', imgHovered: 'ui/ux-hobbyist' },
+    { text: 'FULLSTACK DEVELOPER', img: 'fullstack-developer' },
+    { text: 'QA ENGINEER', img: 'qa-engineer' },
+    { text: 'UI/UX HOBBYIST', img: 'ui/ux-hobbyist' },
 ];
 
 export const GITHUB_LINK: string = "https://github.com/jeffbuyunhe";
@@ -15,6 +15,8 @@ export const GITHUB_LINK: string = "https://github.com/jeffbuyunhe";
 export const LINKEDIN_LINK: string = "https://www.linkedin.com/in/jeff-he-722754282/";
 
 export const REPO_LINK: string = "https://github.com/jeffbuyunhe/personal-website";
+
+export const CONTACT_EMAIL: string = "jeffbuyunhe@hotmail.com";
 
 export const ABOUT_TEXT: string =
     "I'm a fullstack and automation developer with on software quality. " +
@@ -35,7 +37,7 @@ export const SKILL_DATA: CardData[] = [
     { text: 'Jira', img: '/skills/jira-icon.svg' },
     { text: 'OpenAI', img: '/skills/openai-icon.svg' },
     { text: 'Photoshop', img: '/skills/photoshop-icon.svg' },
-    { text: 'Figma', img: 'skills/figma-icon.svg' },
+    { text: 'Figma', img: '/skills/figma-icon.svg' },
     { text: 'TestRail', img: '/skills/testrail-icon.svg' },
     { text: 'Puppeteer', img: '/skills/puppeteer-icon.svg' },
 ];

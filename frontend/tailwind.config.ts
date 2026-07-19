@@ -1,4 +1,4 @@
-import { nextui } from '@nextui-org/theme';
+import { heroui } from "@heroui/theme";
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -6,7 +6,7 @@ const config: Config = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/@nextui-org/theme/dist/components/(card|image|ripple).js"
+    "./node_modules/@heroui/theme/dist/components/(button|card|form|image|input|ripple|spinner).js"
   ],
   theme: {
     screens: {
@@ -19,6 +19,6 @@ const config: Config = {
       '2xl': '1536px',
     }
   },
-  plugins: [nextui()],
+  plugins: [heroui()],
 };
 export default config;

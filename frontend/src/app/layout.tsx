@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { NextUIProvider } from "@nextui-org/system";
+import { HeroUIProvider } from "@heroui/system";
 import { Outfit } from "next/font/google";
 import Navigation from "@/app/components/Navigation/navigation"
-import "./globals.css";
-import "./cols.css";
-import "./animations.css";
+import "@/app/globals.css";
+import "@/app/cols.css";
+import "@/app/animations.css";
 
 const outfit = Outfit({ subsets: ["latin"] });
 
@@ -21,10 +21,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={outfit.className}>
-        <NextUIProvider>
+        <HeroUIProvider>
           <Navigation />
           <>{children}</>
-        </NextUIProvider>
+        </HeroUIProvider>
       </body>
     </html>
   );

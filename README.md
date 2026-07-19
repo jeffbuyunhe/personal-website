@@ -1,33 +1,59 @@
 ## Installation and Setup
 
-Before running this application, you will need to install Node.js and create a .env file for both the frontend and backend (an example is provided).
+Before running this application, install [Node.js](https://nodejs.org/en/download/) and create a `.env` file in both the frontend and backend directories.
 
-Node.js can be downloaded [here](https://nodejs.org/en/download/).
+### Backend
 
-Clone the repository to any directory. Navigate to the <code>./personal-website/backend</code> folder and modify the variables in the <code>.env.example</code> file at the root of the folder. 
+Navigate to `./personal-website/backend` and copy `.env.example` to `.env`:
 
-Inside the <code>.env.example</code> file you will need to define the following:
+```bash
+cp .env.example .env
+```
 
-<pre>
-FRONTEND_URL="https://localhost:3000/" (already set for you, do not change unless port 3000 is being used elsewhere)
-EMAIL_ADDRESS=YOUR EMAIL ADDRESS
-EMAIL_KEY=YOUR EMAIL KEY
-</pre>
+Set the following values in `.env`:
 
-After this, change the name of the <code>.env.example</code> file to just <code>.env</code>
+```env
+FRONTEND_URL=http://localhost:3000/
+EMAIL_ADDRESS_FROM=your-sending-gmail-address
+EMAIL_ADDRESS_TO=where-messages-should-be-delivered
+EMAIL_KEY=your-gmail-app-password
+```
 
-Finally, install the dependencies with <code>npm install</code>, and run the backend with <code>node app.js</code>.
+Then install dependencies and start the server:
 
-For the frontend create a new terminal window and navigate to <code>./personal-website/frontend</code>.
+```bash
+npm install
+npm start
+```
 
-The backend should run on port <code>3001</code>, but if this changes for any reason you must go into <code>.env.example</code> and change the port to the different one.
+The backend listens on `PORT` (default `3001`). Override it in `.env` if needed.
 
-<pre>
-NEXT_PUBLIC_BACKEND_URL="http://localhost:3001/" (you probably don't need to change this)
-</pre>
+### Frontend
 
-Otherwise, all you have to do is rename <code>.env.example</code> file to just <code>.env</code> like in the backend.
+Navigate to `./personal-website/frontend` and copy `.env.example` to `.env`:
 
-Finally, install the dependencies with <code>npm install</code>, and run the frontend with <code>npm run dev</code>.
+```bash
+cp .env.example .env
+```
 
-You can now visit the website by going to <code>localhost:3000</code> on any web browser.
+Verify (or set) the backend URL:
+
+```env
+NEXT_PUBLIC_BACKEND_URL="http://localhost:3001/"
+```
+
+Install dependencies and start:
+
+```bash
+npm install
+npm run dev
+```
+
+Visit http://localhost:3000 in any web browser.
+
+### Run both from the repo root
+
+```bash
+npm run install-all   # installs frontend + backend
+npm run dev           # runs both concurrently in development
+```

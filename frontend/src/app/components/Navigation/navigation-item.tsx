@@ -1,27 +1,17 @@
 import Link from "next/link";
-import { Navigation } from "../../types";
+import { Navigation } from "@/app/types";
 
-export function DesktopNavigationItem({ name, link, active }: Navigation) {
-
-    if (active) {
-        return <Link href={link} className="text-xl">
-            <span className="hover-underline-animation">
-                {name}
-            </span>
-        </Link>
-    }
-    return <p className="text-xl text-gray-400">
-        {name}
-    </p>
+interface NavigationItemProps extends Navigation {
+    animated?: boolean;
 }
 
-export function MobileNavigationItem({ name, link, active }: Navigation) {
-    if (active) {
-        return <Link href={link} className="text-xl">
-            {name}
-        </Link>
+export default function NavigationItem({ name, link, active, animated }: NavigationItemProps) {
+    if (!active) {
+        return <p className="text-xl text-gray-400">{name}</p>;
     }
-    return <p className="text-xl text-gray-400">
-        {name}
-    </p>
+    return (
+        <Link href={link} className="text-xl">
+            {animated ? <span className="hover-underline-animation">{name}</span> : name}
+        </Link>
+    );
 }

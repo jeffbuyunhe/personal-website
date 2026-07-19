@@ -7,7 +7,6 @@ export interface Navigation {
 export interface CenterText {
     text: string;
     img: string;
-    imgHovered: string;
 }
 
 export interface CardData {
