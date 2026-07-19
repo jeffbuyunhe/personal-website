@@ -1,10 +1,15 @@
 export interface Result {
-    availability: string;
-    img: string;
     name: string;
-    price: number;
-    title: string;
-    error: string;
     url: string;
-    recordUrl: string;
-};
+    title?: string;
+    img?: string;
+    price?: string;
+    availability?: string;
+    recordUrl?: string;
+    error?: string;
+}
+
+export interface CachedSearch {
+    query: string;
+    results: Result[];
+}

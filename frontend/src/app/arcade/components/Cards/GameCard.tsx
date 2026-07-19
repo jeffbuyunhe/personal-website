@@ -4,12 +4,14 @@ import { GameCardData } from "@/app/arcade/types";
 import { Card, CardHeader, CardFooter, CardBody } from "@heroui/card";
 import { Image } from "@heroui/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { FaGithub } from "react-icons/fa6";
-import { navigateArcade } from "@/app/arcade/utils";
 
 export function GameCard({ text, img, link, gitLink }: GameCardData) {
+    const router = useRouter();
+
     return <Card shadow="md" className="m-1 grayscale-[0.3] hover:grayscale-0 hover:scale-[0.99] min-w-[248px] sm:min-w-[320px] h-[240px]" isPressable
-        onPress={() => { navigateArcade(link) }}>
+        onPress={() => router.push(link)}>
         <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
             <p className="md:text-lg mx-auto">{text}</p>
         </CardHeader>
@@ -21,9 +23,17 @@ export function GameCard({ text, img, link, gitLink }: GameCardData) {
                 src={img} />
         </CardBody>
         <CardFooter>
-            <Link href={gitLink} className="text-2xl text-gray-600 hover:text-black"><FaGithub /></Link>
+            <Link
+                href={gitLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-2xl text-gray-600 hover:text-black"
+                onClick={(e) => e.stopPropagation()}
+            >
+                <FaGithub />
+            </Link>
         </CardFooter>
-    </Card >
+    </Card>
 }
 
 export function ComingSoonGameCard({ text, img }: GameCardData) {

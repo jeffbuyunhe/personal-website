@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, useEffect } from "react";
+import { useCallback, useEffect } from "react";
+import { useState } from "react";
 import { Input } from "@heroui/input";
 import { Button } from "@heroui/button";
-import { RadioGroup, Radio } from "@heroui/radio";
 import { useForm } from "react-hook-form";
 import { BiSearch } from "react-icons/bi";
 import { Result } from "@/app/arcade/trss/types";
@@ -12,7 +12,7 @@ import trssService from "@/app/services/games/trss-service";
 import { useRouter, useSearchParams } from "next/navigation";
 import { getSearchFromSession, saveSearchToSession } from "../utils/search-storage";
 
-export interface FormInput {
+interface FormInput {
     query: string;
 }
 
@@ -23,82 +23,71 @@ export default function Search() {
 
     const router = useRouter();
     const searchParams = useSearchParams();
-    const query = searchParams.get("query") || "";
+    const query = searchParams.get("query") ?? "";
+
+    const runSearch = useCallback((q: string) => {
+        setLoading(true);
+        trssService.searchRecord(q).then((res) => {
+            setLoading(false);
+            setResults(res);
+            saveSearchToSession(q, res);
+        });
+    }, []);
 
     useEffect(() => {
         if (!query) return;
 
         setValue("query", query);
 
-        const cachedSearchResults = getSearchFromSession();
-
-        if (cachedSearchResults && cachedSearchResults.query === query) {
-            setResults(cachedSearchResults.results);
+        const cached = getSearchFromSession();
+        if (cached?.query === query) {
+            setResults(cached.results);
         } else {
-            setLoading(true);
-            trssService.searchRecord(query).then((res) => {
-                setLoading(false);
-                setResults(res);
-                saveSearchToSession(query, res);
-            });
+            runSearch(query);
         }
-    }, [query, setValue]);
+    }, [query, setValue, runSearch]);
 
     function onSubmit(data: FormInput) {
-        const queryParam = data.query.trim();
+        const trimmed = data.query.trim();
+        if (!trimmed) return;
+
         const currentQuery = searchParams.get("query");
-
-        if (!queryParam) return;
-
-        /* Search again even if query is the same */
-        if (queryParam === currentQuery) {
-            setLoading(true);
-            trssService.searchRecord(query).then((res) => {
-                setLoading(false);
-                setResults(res);
-                saveSearchToSession(query, res);
-            });
+        if (trimmed === currentQuery) {
+            /* Force refresh when submitting an identical query. */
+            runSearch(trimmed);
         } else {
-            router.push(`?query=${encodeURIComponent(queryParam)}`);
+            router.push(`?query=${encodeURIComponent(trimmed)}`);
         }
     }
 
     return (
-        <>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <div className="flex flex-col h-constraint my-3">
-                    <div className="flex items-center">
-                        <Input
-                            className="ml-4 mr-2"
-                            placeholder="Search for a Record"
-                            startContent={<BiSearch />}
-                            size="lg"
-                            isClearable
-                            {...register("query", { required: true })}
-                        />
-                        <Button
-                            className="ml-2 mr-4 bg-gradient-to-tr from-yellow-500 to-orange-500 text-white shadow-lg"
-                            isLoading={loading}
-                            radius="md"
-                            type="submit"
-                            size="md"
-                        >
-                            Search
-                        </Button>
-                    </div>
-                    <div>
-                        <RadioGroup orientation="horizontal">
-                            <Radio value="vinyl-only">Only Vinyl</Radio>
-                            <Radio value="cd-only">Only CDs</Radio>
-                        </RadioGroup>
-                    </div>
+        <div className="flex flex-col h-[calc(100vh-68px)] overflow-hidden">
+            <form onSubmit={handleSubmit(onSubmit)} className="shrink-0">
+                <div className="flex items-center h-constraint my-3">
+                    <Input
+                        className="ml-4 mr-2"
+                        placeholder="Search for a Record"
+                        startContent={<BiSearch />}
+                        size="lg"
+                        isClearable
+                        {...register("query", { required: true })}
+                    />
+                    <Button
+                        className="ml-2 mr-4 w-32 bg-gradient-to-tr from-yellow-500 to-orange-500 text-white shadow-lg"
+                        isLoading={loading}
+                        radius="md"
+                        type="submit"
+                        size="lg"
+                    >
+                        Search
+                    </Button>
                 </div>
-            </form >
-            <div className="h-[calc(100vh-80px)] overflow-y-auto px-4 flex flex-col items-center">
+            </form>
+            <div className="flex-1 overflow-y-auto px-4 flex flex-col items-center pb-8">
                 {results.map((result) => (
                     <SearchResult key={result.name} {...result} />
                 ))}
             </div>
-        </>
+        </div>
     );
 }

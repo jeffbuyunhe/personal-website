@@ -1,71 +1,51 @@
-export async function scrape(
-    vinylOnly,
-    cdOnly,
-    browser,
-    query,
-    baseUrl,
-    productURLSelector,
-    productImgSelector,
-    productPriceSelector,
-    productAvailabilitySelector) {
+import { logger } from "../../../../lib/logger.js";
+
+/**
+ * Runs a search against a record-store website using per-store selectors.
+ * Returns a normalized result, or `{ name, url, error }` if anything fails.
+ *
+ * @param {import("puppeteer").Browser} browser
+ * @param {object} store   Store config (see stores/*.js).
+ * @param {string} query   User search string (already validated).
+ */
+export async function scrape(browser, store, query) {
+    const url = `${store.baseUrl}${encodeURIComponent(query)}`;
 
     const page = await browser.newPage();
-    const url = `${baseUrl}${encodeURIComponent(query)}`;
-    await page.goto(url);
-
     try {
-        const searchResults = await page.$$eval(productURLSelector, results =>
-            results.map(e => [e.textContent, e.href]));
+        await page.goto(url, { waitUntil: "domcontentloaded", timeout: 20_000 });
 
-        const filteredSearchResults = filterMusic(searchResults, vinylOnly, cdOnly);
+        const searchResults = await page.$$eval(store.selectors.productUrl, (results) =>
+            results.map((e) => [e.textContent, e.href]),
+        );
 
-        await page.goto(filteredSearchResults[0][1]);
-
-        try {
-            const img = await page.$eval(productImgSelector, e => e.src);
-            const price = await page.$eval(productPriceSelector, e => e.textContent);
-            const availability = await page.$eval(productAvailabilitySelector, e => e.textContent);
-
-            await page.close();
-
-            return {
-                title: filteredSearchResults[0][0].trim(),
-                img: img.trim(),
-                price: price.trim(),
-                availability: availability.trim(),
-                url: url,
-                recordUrl: filteredSearchResults[0][1]
-            }
+        if (searchResults.length === 0) {
+            return { name: store.name, url, error: "No products found." };
         }
-        catch (e) {
-            await page.close();
-            return {
-                url: url,
-                error: "Could not get product details"
-            };
-        }
-    }
-    catch (e) {
-        await page.close();
-        return {
-            url: url,
-            error: "No products found"
+
+        const [firstTitle, firstHref] = searchResults[0];
+        await page.goto(firstHref, { waitUntil: "domcontentloaded", timeout: 20_000 });
+
+        const img = await page.$eval(store.selectors.productImg, (e) => e.src).catch(() => "");
+        const price = await page.$eval(store.selectors.productPrice, (e) => e.textContent).catch(() => "");
+        /* Availability selector is optional — some stores omit it when in stock. */
+        const availability = await page.$eval(store.selectors.productAvailability, (e) => e.textContent).catch(() => "");
+
+        const result = {
+            name: store.name,
+            url,
+            title: firstTitle.trim(),
+            img: img.trim(),
+            price: price.trim(),
+            availability: availability.trim(),
+            recordUrl: firstHref,
         };
-    }
-};
 
-function filterMusic(searchResults, vinylOnly, cdOnly) {
-    if (!vinylOnly && !cdOnly) {
-        return searchResults;
+        return store.transform ? store.transform(result) : result;
+    } catch (err) {
+        logger.warn({ store: store.name, query, err }, "scrape failed");
+        return { name: store.name, url, error: "Could not get product details" };
+    } finally {
+        await page.close().catch(() => {});
     }
-    const filteredResults = [];
-    for (let i = 0; i < searchResults.length; i++) {
-        if (vinylOnly && !/\bcd\b/i.test(searchResults[i][0]) && !/\bcassette\b/i.test(searchResults[i][0])) {
-            filteredResults.push(searchResults[i]);
-        }
-        if (cdOnly && /\bcd\b/i.test(searchResults[i][0])) {
-            filteredResults.push(searchResults[i]);
-        }
-    }
-    return filteredResults;
 }

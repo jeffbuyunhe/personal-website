@@ -1,48 +1,73 @@
-name: Deploy 
+name: Deploy
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
+    branches: [main]
   workflow_dispatch:
 
+env:
+  REGISTRY: ghcr.io
+  BACKEND_IMAGE: ghcr.io/jeffbuyunhe/personal-website-backend
+  FRONTEND_IMAGE: ghcr.io/jeffbuyunhe/personal-website-frontend
+
 jobs:
-  build:
-
+  build-and-push:
     runs-on: ubuntu-latest
-
-    if: github.ref == 'refs/heads/main'
-
-    strategy:
-      matrix:
-        node-version: [20.x]
+    permissions:
+      contents: read
+      packages: write
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
-      - run: echo "${{ secrets.ENV_FRONTEND }}" > ./frontend/.env
-      - run: echo "${{ secrets.ENV_BACKEND }}" > ./backend/.env
-
-      - run: npm ci
-      - run: npm run install-all
-      - run: npm run build
-      
-      - name: rsync update
-        uses: burnett01/rsync-deployments@7.0.1
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
         with:
-          switches: -avzr --delete
-          path: ./*
-          remote_path: ~/app/
-          remote_host: "${{ secrets.SSH_HOST }}"
-          remote_user: ubuntu
-          remote_key: "${{ secrets.SSH_PRIVATE_KEY }}"
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: restart server
+      - name: Build and push backend image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./backend
+          push: true
+          tags: ${{ env.BACKEND_IMAGE }}:latest
+
+      - name: Build and push frontend image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./frontend
+          push: true
+          tags: ${{ env.FRONTEND_IMAGE }}:latest
+          build-args: |
+            NEXT_PUBLIC_BACKEND_URL=${{ secrets.NEXT_PUBLIC_BACKEND_URL }}
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build-and-push
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Copy docker-compose.yml to server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ubuntu
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: docker-compose.yml
+          target: ~/app/
+
+      - name: Pull images and restart containers
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: "${{ secrets.SSH_HOST }}"
+          host: ${{ secrets.SSH_HOST }}
           username: ubuntu
-          key: "${{ secrets.SSH_PRIVATE_KEY }}"
-          script: cd ~/scripts/ && ./restart-frontend.sh && ./restart-backend.sh
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd ~/app
+            echo "${{ secrets.ENV_BACKEND }}" > backend/.env
+            echo "${{ secrets.ENV_FRONTEND }}" > frontend/.env
+            docker compose pull
+            docker compose up -d --remove-orphans
