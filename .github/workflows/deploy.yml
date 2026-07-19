@@ -69,5 +69,7 @@ jobs:
             cd ~/app
             echo "${{ secrets.ENV_BACKEND }}" > backend/.env
             echo "${{ secrets.ENV_FRONTEND }}" > frontend/.env
+            sudo fuser -k 3000/tcp > 2>/dev/null || true
+            sudo fuser -k 3001/tcp > 2>/dev/null || true
             docker compose pull
             docker compose up -d --remove-orphans
