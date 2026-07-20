@@ -62,5 +62,6 @@ jobs:
             echo "${{ secrets.ENV_BACKEND }}" > ~/app/backend/.env
             echo "${{ secrets.ENV_FRONTEND }}" > ~/app/frontend/.env
             cd ~/app
+            docker image prune -a -f
             docker compose pull
             docker compose up -d --remove-orphans --force-recreate
