@@ -61,8 +61,6 @@ jobs:
             curl -fsSL "https://raw.githubusercontent.com/jeffbuyunhe/personal-website/main/docker-compose.yml" -o ~/app/docker-compose.yml
             echo "${{ secrets.ENV_BACKEND }}" > ~/app/backend/.env
             echo "${{ secrets.ENV_FRONTEND }}" > ~/app/frontend/.env
-            sudo fuser -k 3000/tcp || true
-            sudo fuser -k 3001/tcp || true
             cd ~/app
             docker compose pull
             docker compose up -d --remove-orphans
