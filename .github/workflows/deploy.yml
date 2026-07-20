@@ -58,25 +58,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             mkdir -p ~/app/backend ~/app/frontend
-            cat > ~/app/docker-compose.yml << 'COMPOSE'
-            services:
-              backend:
-                image: ghcr.io/jeffbuyunhe/personal-website-backend:latest
-                restart: unless-stopped
-                ports:
-                  - "3001:3001"
-                env_file:
-                  - ./backend/.env
-              frontend:
-                image: ghcr.io/jeffbuyunhe/personal-website-frontend:latest
-                restart: unless-stopped
-                ports:
-                  - "3000:3000"
-                env_file:
-                  - ./frontend/.env
-                depends_on:
-                  - backend
-            COMPOSE
+            curl -fsSL "https://raw.githubusercontent.com/jeffbuyunhe/personal-website/main/docker-compose.yml" -o ~/app/docker-compose.yml
             echo "${{ secrets.ENV_BACKEND }}" > ~/app/backend/.env
             echo "${{ secrets.ENV_FRONTEND }}" > ~/app/frontend/.env
             sudo fuser -k 3000/tcp || true
