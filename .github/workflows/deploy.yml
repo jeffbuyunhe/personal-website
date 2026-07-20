@@ -63,4 +63,4 @@ jobs:
             echo "${{ secrets.ENV_FRONTEND }}" > ~/app/frontend/.env
             cd ~/app
             docker compose pull
-            docker compose up -d --remove-orphans
+            docker compose up -d --remove-orphans --force-recreate
