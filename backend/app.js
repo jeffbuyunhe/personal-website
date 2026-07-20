@@ -11,6 +11,10 @@ import { trssRouter } from "./routers/games/trss/trss_router.js";
 export function createApp() {
     const app = express();
 
+    // Trust one proxy hop (Caddy) so express-rate-limit uses the real client IP
+    // from X-Forwarded-For rather than the proxy's IP.
+    app.set("trust proxy", 1);
+
     app.use(pinoHttp({ logger }));
     app.use(helmet());
     app.use(express.urlencoded({ extended: false }));
