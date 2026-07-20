@@ -26,6 +26,7 @@ FROM node:20-alpine AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
+ENV HOSTNAME=0.0.0.0
 
 # standalone output embeds the minimal server + required node_modules subset
 COPY --from=builder /app/.next/standalone ./
